@@ -669,6 +669,61 @@ public class SunmiPrintHelper {
         }
     }
 
+     /**
+     * print Line
+     */
+     public void printDashLine() {
+        if(sunmiPrinterService == null){
+            //TODO Service disconnection processing
+            return;
+        }
+        try {
+            int paper = sunmiPrinterService.getPrinterPaper();
+            if(paper == 1){
+                sunmiPrinterService.printText("--------------------------------\n", null);
+            }else{
+                sunmiPrinterService.printText("------------------------------------------------\n",
+                        null);
+            }
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+     }
+
+    /**
+     *  Example Print TestPrint ppp
+     */
+
+    public void testPrintExample(Context context) {
+        if(sunmiPrinterService == null){
+            //TODO Service disconnection processing
+            return ;
+        }
+        try {
+            int paper = sunmiPrinterService.getPrinterPaper();
+
+            sunmiPrinterService.printerInit(null);
+            // 0 is left, 1 is center, 2 is right
+            sunmiPrinterService.setAlignment(1, null);
+            sunmiPrinterService.printText("Rust <3\n", null);
+            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_foreground);
+            sunmiPrinterService.printBitmap(bitmap, null);
+            // for print line 1 is 58mm
+            if(paper == 1){
+                sunmiPrinterService.printText("--------------------------------\n", null);
+            }else{
+                sunmiPrinterService.printText("------------------------------------------------\n",
+                        null);
+            }
+
+            // cutOut Paper
+            sunmiPrinterService.autoOutPaper(null);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Used to report the real-time query status of the printer, which can be used before each
      * printing
