@@ -173,6 +173,18 @@ public class SunmiPrintHelper {
             handleRemoteException(e);
         }
     }
+    public void printLineWrap(int number){
+        if(sunmiPrinterService == null){
+            //TODO Service disconnection processing
+            return;
+        }
+
+        try {
+            sunmiPrinterService.lineWrap(number, null);
+        } catch (RemoteException e) {
+            handleRemoteException(e);
+        }
+    }
 
     /**
      * Get printer serial number

@@ -33,6 +33,21 @@ public class MainActivity extends AppCompatActivity {
                 SunmiPrintHelper.getInstance().printText("Hi! ppp\n", 18, true, false, null);
                 SunmiPrintHelper.getInstance().printText("Hi! >.<\n", 20, true, false, null);
                 SunmiPrintHelper.getInstance().printDashLine();
+                SunmiPrintHelper.getInstance().printTable(
+                        new String[] {"Item", "Item1", "Item2", "Item3"},
+                        new int[] { 1, 1, 1, 1},
+                        new int[] {1, 1, 1,1 }
+                );
+                SunmiPrintHelper.getInstance().printDashLine();
+                SunmiPrintHelper.getInstance().printLineWrap(1);
+                String txts[] = new String[]{"Item", "Price"};
+                int width[] = new int[]{1, 1};
+                int align[] = new int[]{0, 2};
+                SunmiPrintHelper.getInstance().printTable(
+                        txts,
+                        width,
+                        align
+                );
                 SunmiPrintHelper.getInstance().cutpaper();
                 Log.d("ppp", "Hii");
             }
